@@ -1,4 +1,4 @@
-#include "shared.c"
+#include "includes.h"
 
 void insert_sort(void* array[], size_t size, int (*cmp)(void*, void*)) {
     size_t i, j;

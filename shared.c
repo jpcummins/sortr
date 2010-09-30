@@ -1,7 +1,4 @@
-#pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include "comparers.c"
+#include "includes.h"
 
 void swap(void** a, void** b) {
     void* tmp = *a;
@@ -25,7 +22,11 @@ static void** generate_pointer_array(void* array, size_t size, size_t element_si
     return (void**) pointer_array;
 }
 
-static void test_sort(void (*sort)(void**, size_t, int (*cmp)(void*, void*)), int (*cmp)(void*, void*), void** array, size_t size, const char* message) {
+static void test_sort(void (*sort)(void**, size_t, int (*cmp)(void*, void*)), 
+                      int (*cmp)(void*, void*), 
+                      void** array, 
+                      size_t size, 
+                      const char* message) {
     size_t i;
     
     (*sort)(array, size, cmp);
@@ -44,7 +45,10 @@ static void test_sort(void (*sort)(void**, size_t, int (*cmp)(void*, void*)), in
     printf("PASSED: %s\n", message);
 }
 
-void test_int_sort(void (*sort)(void**, size_t, int (*cmp)(void*, void*)), int* array, size_t size, const char* message) {
+void test_int_sort(void (*sort)(void**, size_t, int (*cmp)(void*, void*)), 
+                   int* array, 
+                   size_t size, 
+                   const char* message) {
     void** pointers = generate_pointer_array((void*) array, size, sizeof(int));
     test_sort(sort, int_compare, pointers, size, message);
     free(pointers);
